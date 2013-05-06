@@ -16,6 +16,31 @@ function standardConfermaion()
 	end
 end
 
+function cl ()
+	term.clear()
+	print("  _____      _  ____   _____ ")
+	print(" |  __ \\    | |/ __ \\ / ____|")
+	print(" | |__) |___| | |  | | (___  ")
+	print(" |  _  // _ \\ | |  | |\\___ \\ ")
+	print(" | | \\ \\  __/ | |__| |____) |")
+	print(" |_|  \\_\\___|_|\\____/|_____/ ")
+	print("                            v0.1")
+	print("")
+end
+
+function fcl ()
+	term.setCursorPos(1,8)
+	term.clearLine()
+end
+
+function sl()
+	if releaseVersion then
+		textutils.slowPrint("...", 5)
+	else
+		write("...")
+	end
+end
+
 -- os.loadAPI("/disk/lib/util/common.lua")
 print("  _____      _  ____   _____ ")
 print(" |  __ \\    | |/ __ \\ / ____|")
@@ -24,37 +49,58 @@ print(" |  _  // _ \\ | |  | |\\___ \\ ")
 print(" | | \\ \\  __/ | |__| |____) |")
 print(" |_|  \\_\\___|_|\\____/|_____/ ")
 print("                            v0.1")
+print("")
 
 write("Would you like to install (Y/N)?")
 local confirm = standardConfermaion()
 -- os.unloadAPI("/disk/lib/util/common.lua")
 if confirm then
-	write("\nRelOS v0.1 Installing")
-	textutils.slowPrint("...", 5)
-	write("Installing RelOS Apis\n")
+	cl()
+	write("RelOS v0.1 Installing")
+	sl()
+	--write("\n")
+	cl()
+	write("Installing RelOS Apis")
+	sl()
+	--write("\n")
 	shell.run("/disk/installAPI.lua")
-	write("Installing RelOS Bins\n")
+	fcl()
+	write("Installing RelOS Bins")
+	sl()
+	--write("\n")
 	shell.run("/disk/installBIN.lua")
 
+	fcl()
+	write("Setting up BootLoader for ")
+	--write("\n")
 	fs.delete("/startup")
-	fs.copy("/disk/boot.lua", "/startup")
-
-	write("Running startup app\n")
 	if turtle ~= nil then
+		write("Turtle")
+		fs.copy("/disk/thinTurtleClientBoot.lua", "/startup")
+	else
+		write("Server")
+		fs.copy("/disk/thinTurtleServerBoot.lua", "/startup")
+	end
+	sl()
+	cl()
+	write("Running startup app")
+	sl()
+	shell.run("/startup")
+	--if turtle ~= nil then
 		--shell.run("/bin/StorageRoom/build") --Testing
 		--shell.run("/bin/satellite/buildTest") --Testing
-		shell.run("cd /bin/satellite")
-	end
+		--shell.run("cd /bin/satellite")
+	--end
 else
 	write("Skipping Install")
-	textutils.slowPrint("...", 5)
+	sl()
 	write("Passing boot to HDD")
-	textutils.slowPrint("...", 5)
+	sl()
 	if fs.exists("/startup") then shell.run("/startup")
 	else
 		write("No Boot found on HDD")
-		textutils.slowPrint("...", 5)
+		sl()
 		write("Defaulting to rom")
-		textutils.slowPrint("...", 5)
+		sl()
 	end
 end
