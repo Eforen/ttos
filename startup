@@ -1,0 +1,60 @@
+releaseVersion = false
+term.clear()
+
+function standardConfermaion()
+	--local waitingConfermation = true
+	--while waitingConfermation == true do
+	while true do
+		event, param1, param2 = os.pullEvent("char")
+		if param1 == "y" then
+			-- waitingConfermation = false
+			return true
+		elseif param1 == "n" then
+			-- waitingConfermation = false
+			return false
+		end
+	end
+end
+
+-- os.loadAPI("/disk/lib/util/common.lua")
+print("  _____      _  ____   _____ ")
+print(" |  __ \\    | |/ __ \\ / ____|")
+print(" | |__) |___| | |  | | (___  ")
+print(" |  _  // _ \\ | |  | |\\___ \\ ")
+print(" | | \\ \\  __/ | |__| |____) |")
+print(" |_|  \\_\\___|_|\\____/|_____/ ")
+print("                            v0.1")
+
+write("Would you like to install (Y/N)?")
+local confirm = standardConfermaion()
+-- os.unloadAPI("/disk/lib/util/common.lua")
+if confirm then
+	write("\nRelOS v0.1 Installing")
+	textutils.slowPrint("...", 5)
+	write("Installing RelOS Apis\n")
+	shell.run("/disk/installAPI.lua")
+	write("Installing RelOS Bins\n")
+	shell.run("/disk/installBIN.lua")
+
+	fs.delete("/startup")
+	fs.copy("/disk/boot.lua", "/startup")
+
+	write("Running startup app\n")
+	if turtle ~= nil then
+		--shell.run("/bin/StorageRoom/build") --Testing
+		--shell.run("/bin/satellite/buildTest") --Testing
+		shell.run("cd /bin/satellite")
+	end
+else
+	write("Skipping Install")
+	textutils.slowPrint("...", 5)
+	write("Passing boot to HDD")
+	textutils.slowPrint("...", 5)
+	if fs.exists("/startup") then shell.run("/startup")
+	else
+		write("No Boot found on HDD")
+		textutils.slowPrint("...", 5)
+		write("Defaulting to rom")
+		textutils.slowPrint("...", 5)
+	end
+end
