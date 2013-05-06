@@ -1,10 +1,10 @@
-local sOpenedSide = nil
+sOpenedSide = nil
 
 function string.starts(String,Start)
    return string.sub(String,1,string.len(Start))==Start
 end
 
-local function open()
+function open()
 	local bOpen, sFreeSide = false, nil
 	for n,sSide in pairs(rs.getSides()) do	
 		if peripheral.getType( sSide ) == "modem" then
@@ -40,24 +40,38 @@ function broadcastAlive()
 	--rednet.br
 end
 
-function f(task, pos){
+function f(task, pos)
 	task[pos] = "f"
-}
-function b(task, pos){
+	write(task[pos])
+	return task
+end
+function b(task, pos)
 	task[pos] = "b"
-}
-function l(task, pos){
+	write(task[pos])
+	return task
+end
+function l(task, pos)
 	task[pos] = "l"
-}
-function r(task, pos){
+	write(task[pos])
+	return task
+end
+function r(task, pos)
 	task[pos] = "r"
-}
-function u(task, pos){
+	write(task[pos])
+	return task
+end
+function u(task, pos)
 	task[pos] = "u"
-}
-function d(task, pos){
+	write(task[pos])
+	return task
+end
+function d(task, pos)
 	task[pos] = "d"
-}
-function eot(task, pos){
+	write(task[pos])
+	return task
+end
+function eot(task, pos)
 	task[pos] = "eot"
-}
+	write(task[pos])
+	return task
+end

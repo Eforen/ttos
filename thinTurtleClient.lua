@@ -1,4 +1,4 @@
-os.loadAPI("tc")
+os.loadAPI('/tc')
 
 function procMsg( msg )
 	-- body
@@ -8,9 +8,9 @@ function procMsg( msg )
     	elseif msg[i] == "b" then
     		tc.b()
     	elseif msg[i] == "l" then
-    		tc.l()
+    		tc.tl()
     	elseif msg[i] == "r" then
-    		tc.r()
+    		tc.tr()
     	elseif msg[i] == "u" then
     		tc.u()
     	elseif msg[i] == "d" then
@@ -20,16 +20,20 @@ function procMsg( msg )
 end
 
 --Main
-ts.open()
+
+local running = true
+
+tc.open()
+
 while running do
 	event, var2, var3 = os.pullEvent()
 	if event == 'key' then
 	--elseif event == 'timer' and var2 == tc.broadcastAliveTimer then
 	--	tc.broadcastAlive()
 	elseif event == 'rednet_message' then
-		print( "saw: \"" .. var2 .. "\"")
-		if string.starts(var2, "ttsm: ") then
-			msg = serialize.deserialize(string.sub(var2,string.len("ttsm: ")))
+		print( "saw: \"" .. var3 .. "\"")
+		if string.starts(var3, "ttsm: ") then
+			msg = textutils.unserialize(string.sub(var3,string.len("ttsm: ")))
 			procMsg(msg)
 		end
 	end

@@ -1,10 +1,10 @@
 fcl()
 write("Setting up BootLoader for ")
 --write("\n")
-fs.delete("/thinTurtleClient")
-fs.delete("/tc")
-fs.delete("/thinTurtleServer")
-fs.delete("/ts")
+if fs.exists("/thinTurtleClient") then fs.delete("/thinTurtleClient") end
+if fs.exists("/tc") then fs.delete("/tc") end
+if fs.exists("/thinTurtleServer") then fs.delete("/thinTurtleServer") end
+if fs.exists("/ts") then fs.delete("/ts") end
 if turtle ~= nil then
 	write("Turtle")
 	fs.copy("/disk/thinTurtleClient.lua", "/thinTurtleClient")

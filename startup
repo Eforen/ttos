@@ -17,6 +17,7 @@ function standardConfermaion()
 end
 
 function cl ()
+	term.setCursorPos(1,1)
 	term.clear()
 	print("  _____      _  ____   _____ ")
 	print(" |  __ \\    | |/ __ \\ / ____|")
@@ -73,7 +74,7 @@ if confirm then
 	fcl()
 	write("Setting up BootLoader for ")
 	--write("\n")
-	fs.delete("/startup")
+	if fs.exists("/startup") then fs.delete("/startup")  end
 	if turtle ~= nil then
 		write("Turtle")
 		fs.copy("/disk/thinTurtleClientBoot.lua", "/startup")
@@ -85,6 +86,7 @@ if confirm then
 	cl()
 	write("Running startup app")
 	sl()
+	write("\n")
 	shell.run("/startup")
 	--if turtle ~= nil then
 		--shell.run("/bin/StorageRoom/build") --Testing
