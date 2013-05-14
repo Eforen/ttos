@@ -55,6 +55,12 @@ function checkFuel()
 	end
 end
 
+function rpt( func, count, ...)
+	for i = 0, count, 1 do
+		func(...)
+	end
+end
+
 function f()
 	--if not turtle.detect() then turtle.forward() end
 	if not turtle.forward() then

@@ -40,38 +40,68 @@ function broadcastAlive()
 	--rednet.br
 end
 
-function f(task, pos)
-	task[pos] = "f"
+function f(task, pos, var)
+	task[pos] = {action="f", args=cvar}
 	write(task[pos])
 	return task
 end
-function b(task, pos)
-	task[pos] = "b"
+function b(task, pos, var)
+	task[pos] = {action="b", args=cvar}
 	write(task[pos])
 	return task
 end
-function l(task, pos)
-	task[pos] = "l"
+function l(task, pos, var)
+	task[pos] = {action="l", args=cvar}
 	write(task[pos])
 	return task
 end
-function r(task, pos)
-	task[pos] = "r"
+function r(task, pos, var)
+	task[pos] = {action="r", args=cvar}
 	write(task[pos])
 	return task
 end
-function u(task, pos)
-	task[pos] = "u"
+function u(task, pos, var)
+	task[pos] = {action="u", args=cvar}
 	write(task[pos])
 	return task
 end
-function d(task, pos)
-	task[pos] = "d"
+function d(task, pos, var)
+	task[pos] = {action="d", args=cvar}
 	write(task[pos])
 	return task
 end
-function eot(task, pos)
-	task[pos] = "eot"
+function d(task, pos, var)
+	task[pos] = {action="d", args=cvar}
+	write(task[pos])
+	return task
+end
+function du(task, pos, var)
+	task[pos] = {action="du", args=cvar}
+	write(task[pos])
+	return task
+end
+function df(task, pos, var)
+	task[pos] = {action="df", args=cvar}
+	write(task[pos])
+	return task
+end
+function dd(task, pos, var)
+	task[pos] = {action="dd", args=cvar}
+	write(task[pos])
+	return task
+end
+function da(task, pos, var)
+	task[pos] = {action="da", args=cvar}
+	write(task[pos])
+	return task
+end
+function db(task, pos, var)
+	task[pos] = {action="db", args=cvar}
+	write(task[pos])
+	return task
+end
+function eot(task, pos, var)
+	task[pos] = {action="eot", args=cvar}
 	write(task[pos])
 	return task
 end

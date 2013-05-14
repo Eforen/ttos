@@ -3,18 +3,28 @@ os.loadAPI('/tc')
 function procMsg( msg )
 	-- body
 	for i = 1, msg[1]+1, 1 do
-        if msg[i] == "f" then
-        	tc.f()
-    	elseif msg[i] == "b" then
-    		tc.b()
-    	elseif msg[i] == "l" then
-    		tc.tl()
-    	elseif msg[i] == "r" then
-    		tc.tr()
-    	elseif msg[i] == "u" then
-    		tc.u()
-    	elseif msg[i] == "d" then
-    		tc.d()
+        if msg[i].action == "f" then
+            tc.rpt(tc.f, msg[i].args)
+    	elseif msg[i].action == "b" then
+    		tc.rpt(tc.b, msg[i].args)
+    	elseif msg[i].action == "l" then
+    		tc.rpt(tc.tl, msg[i].args)
+    	elseif msg[i].action == "r" then
+    		tc.rpt(tc.tr, msg[i].args)
+    	elseif msg[i].action == "u" then
+    		tc.rpt(tc.u, msg[i].args)
+        elseif msg[i].action == "d" then
+            tc.rpt(tc.d, msg[i].args)
+        elseif msg[i].action == "du" then
+            tc.rpt(tc.dig, msg[i].args)
+        elseif msg[i].action == "df" then
+            tc.rpt(tc.digUp, msg[i].args)
+        elseif msg[i].action == "dd" then
+            tc.rpt(tc.digDown, msg[i].args)
+        elseif msg[i].action == "da" then
+            tc.rpt(tc.digAll, msg[i].args)
+        elseif msg[i].action == "db" then
+            tc.rpt(tc.digBoth, msg[i].args)
         end
     end
 end
